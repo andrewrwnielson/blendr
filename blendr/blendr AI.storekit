@@ -1,0 +1,115 @@
+{
+  "identifier" : "BD38A842",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6514320978",
+      "localizations" : [
+        {
+          "description" : "200 swipes",
+          "displayName" : "Flavor Pack",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "blendr_1.99_200",
+      "referenceName" : "Flavor Pack",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "6514320905",
+      "localizations" : [
+        {
+          "description" : "500 swipes",
+          "displayName" : "Gourmet Feast",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "blendr_3.99_500",
+      "referenceName" : "Gourmet Feast",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6514320721",
+      "localizations" : [
+        {
+          "description" : "80 swipes",
+          "displayName" : "Quick Taste",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "blendr_0.99_80",
+      "referenceName" : "Quick Taste",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6504000164",
+    "_developerTeamID" : "DJ45M3T43C",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 741975369.70031297,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
