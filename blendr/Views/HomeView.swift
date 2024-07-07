@@ -17,150 +17,168 @@ struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var interstitialAdsManager: InterstitialAdsManager
     
+    let storeTip = StoreTip()
+    let cardStackTip = CardStackTip()
+    
     var body: some View {
-        GeometryReader { geometry in
-            if !isInputPresented && !isGetSwipesPresented {
-                VStack {
-                    HStack {
-                        VStack {
-                            Button {
+        if !isInputPresented && !isGetSwipesPresented {
+            VStack {
+                HStack {
+                    VStack {
+                        Button {
+                            withAnimation {
                                 isGetSwipesPresented = true
-                            } label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 50)
-                                        .foregroundStyle(Color(hex: 0x002247))
-                                        .cornerRadius(10)
-                                    VStack {
-                                        Image(systemName: "cart.fill")
-                                            .font(.title)
-                                            .foregroundStyle(.white)
-                                    }
+                            }
+                            storeTip.invalidate(reason: .actionPerformed)
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50)
+                                    .foregroundStyle(Color(hex: 0x002247))
+                                    .cornerRadius(10)
+                                VStack {
+                                    Image(systemName: "cart.fill")
+                                        .font(.title)
+                                        .foregroundStyle(.white)
                                 }
                             }
-                            .padding(.horizontal)
-                            
-                            Spacer()
                         }
+                        .padding(.horizontal)
+                        .popoverTip(storeTip)
                         
-                        Image("blendrNoText")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width / 1.2 - 140)
-                        
-                        VStack {
-                            Button {
-                                isCardStackPresented = true
-                            } label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 50)
-                                        .foregroundStyle(Color(hex: 0x002247))
-                                        .cornerRadius(10)
-                                    VStack {
-                                        Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
-                                            .font(.title2)
-                                            .foregroundStyle(.white)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                            
-                            Spacer()
-                        }
+                        Spacer()
                     }
-                    .frame(width: UIScreen.main.bounds.width)
                     
-                    Spacer()
+                    Image("blendrNoText")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.width / 1.2 - 140)
                     
                     VStack {
-                        ZStack {
-                            Rectangle()
-                                .frame(height: 50)
-                                .foregroundStyle(Color(hex: 0x002247))
-                                .cornerRadius(10)
-                            
-                            Text("What would you like to make?")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                        }
-                        .padding(.horizontal, 30)
-                        
-                        HStack {
-                            Spacer()
-                            
+                        Button {
+                            isCardStackPresented = true
+                            cardStackTip.invalidate(reason: .actionPerformed)
+                        } label: {
                             ZStack {
                                 Circle()
-                                    .frame(width: geometry.size.width / 4 + 15)
+                                    .frame(width: 50)
                                     .foregroundStyle(Color(hex: 0x002247))
-                                
-                                Circle()
-                                    .frame(width: geometry.size.width / 4)
-                                    .foregroundStyle(.white)
-                                
-                                Button(action: {
-                                    isFood = true
+                                    .cornerRadius(10)
+                                VStack {
+                                    Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
+                                        .font(.title2)
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                        .popoverTip(cardStackTip)
+                        
+                        Spacer()
+                    }
+                }
+                .frame(width: UIScreen.main.bounds.width)
+                
+                Spacer()
+                
+                VStack {
+                    ZStack {
+                        Rectangle()
+                            .frame(height: 50)
+                            .foregroundStyle(Color(hex: 0x002247))
+                            .cornerRadius(10)
+                        
+                        Text("What would you like to make?")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 30)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        ZStack {
+                            Circle()
+                                .frame(width: UIScreen.main.bounds.width / 4 + 15)
+                                .foregroundStyle(Color(hex: 0x002247))
+                            
+                            Circle()
+                                .frame(width: UIScreen.main.bounds.width / 4)
+                                .foregroundStyle(.white)
+                            
+                            Button(action: {
+                                isFood = true
+                                withAnimation {
                                     isInputPresented = true
-                                }) {
-                                    Image(systemName: "fork.knife.circle.fill")
+                                }
+                            }) {
+                                Image(systemName: "fork.knife.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: UIScreen.main.bounds.width / 4 - 15)
+                                    .foregroundStyle(Color(hex: 0x002247))
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            Circle()
+                                .frame(width: UIScreen.main.bounds.width / 4 + 15)
+                                .foregroundStyle(Color(hex: 0x002247))
+                            
+                            Circle()
+                                .frame(width: UIScreen.main.bounds.width / 4)
+                                .foregroundStyle(.white)
+                            
+                            Button(action: {
+                                isFood = false
+                                withAnimation {
+                                    isInputPresented = true
+                                }
+                            }) {
+                                ZStack {
+                                    Circle()
+                                        .frame(height: UIScreen.main.bounds.width / 4 - 15)
+                                        .foregroundStyle(Color(hex: 0x002247))
+                                    Image(systemName: "wineglass.fill")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(height: geometry.size.width / 4 - 15)
-                                        .foregroundStyle(Color(hex: 0x002247))
+                                        .frame(height: UIScreen.main.bounds.width / 4 - 40)
+                                        .foregroundStyle(.white)
                                 }
                             }
-                            
-                            Spacer()
-                            
-                            ZStack {
-                                Circle()
-                                    .frame(width: geometry.size.width / 4 + 15)
-                                    .foregroundStyle(Color(hex: 0x002247))
-                                
-                                Circle()
-                                    .frame(width: geometry.size.width / 4)
-                                    .foregroundStyle(.white)
-                                
-                                Button(action: {
-                                    isFood = false
-                                    isInputPresented = true
-                                }) {
-                                    ZStack {
-                                        Circle()
-                                            .frame(height: geometry.size.width / 4 - 15)
-                                            .foregroundStyle(Color(hex: 0x002247))
-                                        Image(systemName: "wineglass.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: geometry.size.width / 4 - 40)
-                                            .foregroundStyle(.white)
-                                    }
-                                }
-                            }
-                            
-                            Spacer()
                         }
-                        .padding()
+                        
+                        Spacer()
                     }
-                    Spacer()
-                    Spacer()
+                    .padding()
                 }
-                .fullScreenCover(isPresented: $isCardStackPresented) {
-                    CardStackView(service: CardService(apiToken: "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"), authViewModel: authViewModel)
-                        .environmentObject(authViewModel)
-                }
+                Spacer()
+                Spacer()
             }
-            if isInputPresented {
-                InputView(isCardStackPresented: $isCardStackPresented, isPresented: $isInputPresented, isFood: $isFood, viewModel: viewModel)
+            .onAppear() {
+                Task { await StoreTip.homeViewVisitedEvent.donate() }
+            }
+            .fullScreenCover(isPresented: $isCardStackPresented) {
+                CardStackView(service: CardService(apiToken: "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"), authViewModel: authViewModel)
                     .environmentObject(authViewModel)
-                    .transition(.push(from: .bottom))
-                    .onAppear() {
-                        interstitialAdsManager.loadInterstitialAd()
+                    .onDisappear() {
+                        Task { await CardStackTip.recipesGeneratedEvent.donate() }
                     }
             }
-            if isGetSwipesPresented {
-                GetSwipesView(isPresented: $isGetSwipesPresented)
-            }
+        }
+        if isInputPresented {
+            InputView(isCardStackPresented: $isCardStackPresented, isPresented: $isInputPresented, isFood: $isFood, viewModel: viewModel)
+                .environmentObject(authViewModel)
+                .transition(.blurReplace)
+                .onAppear() {
+                    interstitialAdsManager.loadInterstitialAd()
+                }
+        }
+        if isGetSwipesPresented {
+            GetSwipesView(isPresented: $isGetSwipesPresented)
+                .transition(.blurReplace)
         }
     }
 }

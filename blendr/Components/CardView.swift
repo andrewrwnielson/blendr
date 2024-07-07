@@ -22,13 +22,13 @@ struct CardView: View {
         ZStack {
             Rectangle()
             RecipeInfoView(showRecipeSheet: $showRecipeSheet, recipe: recipe, hideNutrition: viewModelAuth.currentUser?.hideNutrition ?? false)
-                
             
             if isPaywallPresented {
                 Rectangle()
                     .opacity(0.9)
                     .foregroundStyle(Color(hex: 0x002247))
-                VStack(alignment: .center) {
+                
+                VStack {
                     Text("Out of swipes!\n\nBuy more or watch an ad in the store.")
                         .font(.title)
                         .bold()

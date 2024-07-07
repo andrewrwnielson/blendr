@@ -16,7 +16,7 @@ class OpenAIService {
     }
     
     func generateRecipes(prompt: String, completion: @escaping (Result<[Recipe], Error>) -> Void) {
-        guard let systemMessage = ChatQuery.ChatCompletionMessageParam(role: .system, content: "You are a professional recipes suggestor. If you're given ingredients you don't add additional ingredients to recipes. Give exactly 10 recipes. You Respond only in JSON format."),
+        guard let systemMessage = ChatQuery.ChatCompletionMessageParam(role: .system, content: "You are a professional cook providing diverse recipes for the average person. If you're given ingredients only use the ingredients specified but not all ingredients have to be used in each recipe. do not combine weird ingredients. Give exactly 10 recipes. You Respond only in JSON format."),
               let userMessage = ChatQuery.ChatCompletionMessageParam(role: .user, content: prompt) else {
             completion(.failure(NSError(domain: "OpenAIService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to create message parameters."])))
             return

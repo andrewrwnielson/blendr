@@ -172,11 +172,7 @@ struct ProfileView: View {
                                         .padding()
                                     }
                                     
-                                    Spacer()
-                                    
-                                    Text("Terms of Service")
-                                    
-                                    Spacer()
+                                    TOSView()
                                 }
                             }
                             

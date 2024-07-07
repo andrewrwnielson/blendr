@@ -15,6 +15,8 @@ struct CardStackView: View {
     init(service: CardService, authViewModel: AuthViewModel) {
         _viewModel = StateObject(wrappedValue: CardsViewModel(service: service, authViewModel: authViewModel))
     }
+    
+    let swipeIndicatorsTip = SwipeIndicatorsTip()
 
     var body: some View {
         VStack(spacing: 20) {
@@ -54,7 +56,7 @@ struct CardStackView: View {
                 GeneratingRecipesView()
             } else {
                 NavigationStack {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 5) {
                         ZStack {
                             ForEach(viewModel.cardModels) { card in
                                 CardView(viewModel: viewModel, model: card)
@@ -63,6 +65,12 @@ struct CardStackView: View {
 
                         if !viewModel.cardModels.isEmpty {
                             SwipeActionButtonsView(viewModel: viewModel)
+                                .popoverTip(swipeIndicatorsTip)
+                        } else {
+                            Text("No recipes generated")
+                                .foregroundStyle(Color(hex: 0x002247))
+                                .font(.title)
+                                .padding(.bottom, 50)
                         }
                     }
                     .onAppear {

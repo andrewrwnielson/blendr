@@ -33,9 +33,11 @@ struct GetSwipesView: View {
                 Spacer()
                 
                 Button(action: {
-                    isPresented = false
+                    withAnimation {
+                        isPresented = false
+                    }
                 }) {
-                    Image(systemName: "arrow.down.circle.fill")
+                    Image(systemName: "xmark.circle.fill")
                         .resizable()
                         .frame(width: 35, height: 35)
                         .foregroundStyle(Color(hex: 0x002247))

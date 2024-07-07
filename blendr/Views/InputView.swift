@@ -38,6 +38,8 @@ struct InputView: View {
     @State private var audioEngine = AVAudioEngine()
     @State private var transcribedText = ""
     
+    let selectAlcoholTip = SelectAlcoholTip()
+    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -55,6 +57,7 @@ struct InputView: View {
                             if !isFood {
                                 Button(action: {
                                     alcohol.toggle()
+                                    selectAlcoholTip.invalidate(reason: .actionPerformed)
                                 }) {
                                     Image(alcohol ? "alcohol" : "noAlcohol")
                                         .resizable()
@@ -63,6 +66,7 @@ struct InputView: View {
                                         .background(alcohol ? Color.green : Color.red)
                                         .clipShape(Circle())
                                         .foregroundColor(.white)
+                                        .popoverTip(selectAlcoholTip)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                                 .frame(width: 35, height: 35)
@@ -89,9 +93,11 @@ struct InputView: View {
                             Spacer()
                             
                             Button(action: {
-                                isPresented = false
+                                withAnimation {
+                                    isPresented = false
+                                }
                             }) {
-                                Image(systemName: "arrow.down.circle.fill")
+                                Image(systemName: "xmark.circle.fill")
                                     .resizable()
                                     .frame(width: 35, height: 35)
                                     .foregroundStyle(Color(hex: 0x002247))

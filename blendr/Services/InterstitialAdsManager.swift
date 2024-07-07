@@ -19,7 +19,7 @@ class InterstitialAdsManager: NSObject, GADFullScreenContentDelegate, Observable
     
     // Load InterstitialAd
     func loadInterstitialAd(){
-        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/4411468910", request: GADRequest()) { [weak self] add, error in
+        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-9674877606882962/9861803609", request: GADRequest()) { [weak self] add, error in
             guard let self = self else {return}
             if let error = error{
                 print("🔴: \(error.localizedDescription)")
@@ -43,7 +43,7 @@ class InterstitialAdsManager: NSObject, GADFullScreenContentDelegate, Observable
         if let add = interstitialAd{
             add.present(fromRootViewController: root)
             self.interstitialAdLoaded = false
-        }else{
+        } else{
             print("🔵: Ad wasn't ready")
             self.interstitialAdLoaded = false
             self.loadInterstitialAd()

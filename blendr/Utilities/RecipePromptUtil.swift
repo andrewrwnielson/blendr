@@ -16,9 +16,6 @@ func createRecipePrompt(occasion: String, ingredients: String, preferences: Stri
     // Create a string for diet restrictions
     var dietRestrictions = ""
     if !diets.isEmpty {
-        if diets.lowercased().contains("vegetarian") {
-            dietRestrictions += "Ensure all recipes are vegetarian and do not include any meat, poultry, or fish. "
-        }
         
         if diets.lowercased().contains("vegetarian") {
             dietRestrictions += "Ensure all recipes are pescetarian and do not include any meat, excluding fish. "
@@ -75,7 +72,7 @@ func createRecipePrompt(occasion: String, ingredients: String, preferences: Stri
     var prompt = prompts.randomElement()!
     
     if !allergies.isEmpty {
-        prompt += "Please avoid using ingredients that cause allergies such as \(allergies)."
+        prompt += "Do not use ingredients that cause allergies such as \(allergies)."
     }
     
     if !diets.isEmpty {
@@ -85,6 +82,8 @@ func createRecipePrompt(occasion: String, ingredients: String, preferences: Stri
     if !ingredients.isEmpty {
         prompt += "ONLY use the ingredients provided!!! Do not add additional ingredients"
     }
+    
+    prompt += "Use a reasonable amount of ingredients to enhance the recipe"
     
     return """
     \(prompt)
@@ -120,7 +119,7 @@ func createRecipeStepsPrompt(recipe: Recipe, equipment: [String]) -> String {
     let equipmentString = equipment.joined(separator: ", ")
     
     return """
-    Generate step-by-step instructions for the following recipe. Assume all ingredients are raw. Only use the provided equipment: \(equipmentString). If something has to be preheated, have it be the first step, else skip that step:
+    Generate step-by-step instructions for the following recipe. Assume all ingredients are raw. Do not add ingredients that aren't provided to you below. Only use the provided equipment: \(equipmentString). If something has to be preheated, have it be the first step, else skip that step:
     {
         "name": "\(recipe.name)",
         "prepTime": \(recipe.prepTime),

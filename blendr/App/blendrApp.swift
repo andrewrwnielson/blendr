@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import RevenueCat
 import GoogleMobileAds
+import TipKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -44,6 +45,9 @@ struct blendrApp: App {
                 .environmentObject(viewModelAuth)
                 .environmentObject(interstitialAdsManager)
                 .environmentObject(rewardedAdsManager)
+                .task {
+                    try? Tips.configure([.datastoreLocation(.applicationDefault)])
+                }
         }
     }
 }

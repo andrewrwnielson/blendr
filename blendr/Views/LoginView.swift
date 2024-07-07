@@ -20,6 +20,7 @@ struct LoginView: View {
                     .scaledToFill()
                     .frame(width: 150, height: 150)
                     .padding(.vertical, 32)
+                    .padding(.top, 32)
                 
                 VStack(spacing: 24) {
                     TextInputView(text: $email, title: "Email Address", placeholder: "name@example.com")
