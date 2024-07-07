@@ -8,7 +8,7 @@
 import Foundation
 
 func createRecipePrompt(occasion: String, ingredients: String, preferences: String, isFood: Bool, equipment: [String], allergies: String, diets: String) -> String {
-    let recipeType = isFood ? "\(preferences) dishes" : "\(preferences) drink recipes"
+    let recipeType = isFood ? "\(preferences) dishes (these are loose preferences, do not combine weird ingredients)" : "\(preferences) drink recipes"
     
     // Convert equipment array to a comma-separated string
     let equipmentString = equipment.joined(separator: ", ")

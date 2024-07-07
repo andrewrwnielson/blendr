@@ -22,6 +22,7 @@ struct CardView: View {
         ZStack {
             Rectangle()
             RecipeInfoView(showRecipeSheet: $showRecipeSheet, recipe: recipe, hideNutrition: viewModelAuth.currentUser?.hideNutrition ?? false)
+                
             
             if isPaywallPresented {
                 Rectangle()

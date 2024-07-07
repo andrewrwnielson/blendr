@@ -457,9 +457,7 @@ struct InputView: View {
                                     case .success(let recipes):
                                         authViewModel.updateCurrCardStack(with: recipes)
                                         isPresented = false
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            isCardStackPresented = true
-                                        }
+                                        isCardStackPresented = true
                                     case .failure(let error):
                                         print("Error generating recipes: \(error.localizedDescription)")
                                     }
