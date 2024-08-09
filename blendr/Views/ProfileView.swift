@@ -11,6 +11,7 @@ struct ProfileView: View {
     @EnvironmentObject var viewModelAuth: AuthViewModel
     @State private var showingReauthenticateView = false
     @State private var showingTOSView = false
+    @State private var showingPPView = false
     @State private var showingADEView = false
     @EnvironmentObject var rewardedAdsManager: RewardedAdsManager
     
@@ -182,6 +183,38 @@ struct ProfileView: View {
                                 .foregroundStyle(Color(.systemGray2))
                                 .font(.subheadline)
                         }
+                        
+                        HStack {
+                            Button("Privacy Policy") {
+                                showingPPView = true
+                            }
+                            .sheet(isPresented: $showingPPView) {
+                                VStack(spacing: 0) {
+                                    HStack {
+                                        Spacer()
+                                        
+                                        Button {
+                                            showingPPView = false
+                                        } label:{
+                                            Image(systemName: "arrow.down.circle.fill")
+                                                .foregroundStyle(Color(hex: 0x002247))
+                                                .fontWeight(.bold)
+                                                .imageScale(.large)
+                                                .font(.system(size: 20))
+                                        }
+                                        .padding()
+                                    }
+                                    
+                                    PrivacyPolicyView()
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.up")
+                                .foregroundStyle(Color(.systemGray2))
+                                .font(.subheadline)
+                        }
                     }
                     
                     Section("General") {
@@ -190,7 +223,7 @@ struct ProfileView: View {
                             
                             Spacer()
                             
-                            Text("0.1.1")
+                            Text("1.0.2")
                                 .font(.subheadline)
                                 .foregroundStyle(.gray)
                         }

@@ -14,6 +14,7 @@ struct RegistrationView: View {
     @State private var confirmPassword = ""
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModelAuth: AuthViewModel
+    @State private var showingTOSView = false
     
     var body: some View {
         VStack {
@@ -71,6 +72,21 @@ struct RegistrationView: View {
                     .padding(.horizontal)
             }
             
+            HStack(spacing: 0) {
+                Text("By registering, you are agreeing to our ")
+                    .font(.footnote)
+                    .foregroundStyle(.gray)
+                
+                Button {
+                    showingTOSView = true
+                } label: {
+                    Text("_**terms of service**_.")
+                        .font(.footnote)
+                        .foregroundStyle(.blue)
+                }
+            }
+            .padding()
+            
             Button {
                 Task {
                     await viewModelAuth.createUser(withEmail: email, password: password, fullname: fullname)
@@ -88,7 +104,6 @@ struct RegistrationView: View {
             .opacity(formIsValid ? 1.0 : 0.5)
             .disabled(!formIsValid)
             .cornerRadius(10)
-            .padding(.top, 24)
             
             Spacer()
             
@@ -104,6 +119,26 @@ struct RegistrationView: View {
                 .foregroundStyle(Color(hex: 0x002247))
             })
             
+        }
+        .sheet(isPresented: $showingTOSView) {
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        showingTOSView = false
+                    } label:{
+                        Image(systemName: "arrow.down.circle.fill")
+                            .foregroundStyle(Color(hex: 0x002247))
+                            .fontWeight(.bold)
+                            .imageScale(.large)
+                            .font(.system(size: 20))
+                    }
+                    .padding()
+                }
+                
+                TOSView()
+            }
         }
     }
 }

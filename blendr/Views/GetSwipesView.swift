@@ -217,9 +217,11 @@ struct GetSwipesView: View {
                 .foregroundStyle(.gray)
             
             Button {
-                rewardedAdsManager.displayrewardedAd()
-                Task {
-                    await viewModelAuth.updateUserSwipes(viewModelAuth.currentUser!.swipes + 10)
+                if rewardedAdsManager.rewardedAdLoaded {
+                    rewardedAdsManager.displayrewardedAd()
+                    Task {
+                        await viewModelAuth.updateUserSwipes(viewModelAuth.currentUser!.swipes + 10)
+                    }
                 }
             } label: {
                 ZStack {

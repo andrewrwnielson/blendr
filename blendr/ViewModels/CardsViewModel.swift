@@ -44,32 +44,14 @@ class CardsViewModel: ObservableObject {
 
     func removeCard(_ card: CardModel) {
         guard var currentUser = authViewModel.currentUser else { return }
-
-        // Only decrement swipes for free users
-        if currentUser.subscription == 0 {
-            // Check if the user has swipes left
-            if currentUser.swipes > 0 {
-                currentUser.swipes -= 1
-                Task {
-                    await authViewModel.updateUserSwipes(currentUser.swipes)
-                }
-
-                // Remove the card if the user has swipes left
-                if let index = cardModels.firstIndex(where: { $0.id == card.id }) {
-                    cardModels.remove(at: index)
-                    authViewModel.currentUser?.currCardStack = cardModels.map { $0.recipe }
-                    updateCardStackInFirestore()
-                }
-
-                if cardModels.isEmpty {
-                    generateRecipesIfNeeded()
-                }
-            } else {
-                // Show the paywall if the user has no swipes left
-                showPaywall = true
+        
+        if currentUser.swipes > 0 {
+            currentUser.swipes -= 1
+            Task {
+                await authViewModel.updateUserSwipes(currentUser.swipes)
             }
-        } else {
-            // For Master subscription, just remove the card
+
+            // Remove the card if the user has swipes left
             if let index = cardModels.firstIndex(where: { $0.id == card.id }) {
                 cardModels.remove(at: index)
                 authViewModel.currentUser?.currCardStack = cardModels.map { $0.recipe }
@@ -79,6 +61,9 @@ class CardsViewModel: ObservableObject {
             if cardModels.isEmpty {
                 generateRecipesIfNeeded()
             }
+        } else {
+            // Show the paywall if the user has no swipes left
+            showPaywall = true
         }
     }
 

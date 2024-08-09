@@ -68,9 +68,11 @@
 		B07A37A22C28A93900C6D287 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A37A12C28A93900C6D287 /* CardView.swift */; };
 		B07A37A82C28AAD800C6D287 /* CookbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A37A72C28AAD800C6D287 /* CookbookView.swift */; };
 		B07A37AA2C28AF9C00C6D287 /* MatchingGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A37A92C28AF9C00C6D287 /* MatchingGameView.swift */; };
-		B08237E52C3B1A42003E5A70 /* Instructions in Frameworks */ = {isa = PBXBuildFile; productRef = B08237E42C3B1A42003E5A70 /* Instructions */; };
 		B08237E72C3B2019003E5A70 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08237E62C3B2019003E5A70 /* Tip.swift */; };
 		B08237E92C3B53FA003E5A70 /* TOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08237E82C3B53FA003E5A70 /* TOSView.swift */; };
+		B08237EF2C3C28AD003E5A70 /* TOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B08237EE2C3C28AD003E5A70 /* TOS.pdf */; };
+		B08237F12C3C57C3003E5A70 /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B08237F02C3C57C3003E5A70 /* PrivacyPolicy.pdf */; };
+		B08237F32C3C57F6003E5A70 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08237F22C3C57F6003E5A70 /* PrivacyPolicyView.swift */; };
 		B0EAF0F72C35CC5A004F7DBD /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EAF0F62C35CC5A004F7DBD /* Credentials.swift */; };
 		B0FD022F2C29E4470055040A /* ReauthenticateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FD022E2C29E4470055040A /* ReauthenticateView.swift */; };
 /* End PBXBuildFile section */
@@ -152,6 +154,9 @@
 		B08237E22C39A546003E5A70 /* blendr AI.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "blendr AI.storekit"; sourceTree = "<group>"; };
 		B08237E62C3B2019003E5A70 /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		B08237E82C3B53FA003E5A70 /* TOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOSView.swift; sourceTree = "<group>"; };
+		B08237EE2C3C28AD003E5A70 /* TOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TOS.pdf; sourceTree = "<group>"; };
+		B08237F02C3C57C3003E5A70 /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
+		B08237F22C3C57F6003E5A70 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		B0EAF0F62C35CC5A004F7DBD /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		B0FD021E2C29B9830055040A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0FD022E2C29E4470055040A /* ReauthenticateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReauthenticateView.swift; sourceTree = "<group>"; };
@@ -162,7 +167,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B08237E52C3B1A42003E5A70 /* Instructions in Frameworks */,
 				B07A37812C28A46000C6D287 /* RevenueCat in Frameworks */,
 				B06A04602C2F576F0049A680 /* FirebaseAuth in Frameworks */,
 				B06A04782C3456070049A680 /* GoogleMobileAds in Frameworks */,
@@ -226,6 +230,8 @@
 		B07A36FD2C289E9300C6D287 /* blendr */ = {
 			isa = PBXGroup;
 			children = (
+				B08237F02C3C57C3003E5A70 /* PrivacyPolicy.pdf */,
+				B08237EE2C3C28AD003E5A70 /* TOS.pdf */,
 				B04C772A2C2F4DCF008B72E8 /* GoogleService-Info.plist */,
 				B0FD021E2C29B9830055040A /* Info.plist */,
 				B07A37292C289F2600C6D287 /* App */,
@@ -302,6 +308,7 @@
 				B009326E2C2DBB8A002B8129 /* HomeView.swift */,
 				B06A04722C3325980049A680 /* GetSwipesView.swift */,
 				B08237E82C3B53FA003E5A70 /* TOSView.swift */,
+				B08237F22C3C57F6003E5A70 /* PrivacyPolicyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,7 +398,6 @@
 				B06A04632C2F576F0049A680 /* FirebaseFirestoreSwift */,
 				B06A04652C2F576F0049A680 /* FirebaseStorage */,
 				B06A04772C3456070049A680 /* GoogleMobileAds */,
-				B08237E42C3B1A42003E5A70 /* Instructions */,
 			);
 			productName = blendr;
 			productReference = B07A36FB2C289E9300C6D287 /* blendr.app */;
@@ -471,7 +477,6 @@
 				B009325F2C2A0DFB002B8129 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				B06A045E2C2F576F0049A680 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B06A04762C3456070049A680 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
-				B08237E32C3B1A42003E5A70 /* XCRemoteSwiftPackageReference "Instructions" */,
 			);
 			productRefGroup = B07A36FC2C289E9300C6D287 /* Products */;
 			projectDirPath = "";
@@ -489,6 +494,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08237F12C3C57C3003E5A70 /* PrivacyPolicy.pdf in Resources */,
+				B08237EF2C3C28AD003E5A70 /* TOS.pdf in Resources */,
 				B06A04712C32FC640049A680 /* StoreKitTestCertificate.cer in Resources */,
 				B07A37072C289E9300C6D287 /* Preview Assets.xcassets in Resources */,
 				B07A37032C289E9300C6D287 /* Assets.xcassets in Resources */,
@@ -518,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B07A37352C28A01800C6D287 /* NewUserOnboardingView.swift in Sources */,
+				B08237F32C3C57F6003E5A70 /* PrivacyPolicyView.swift in Sources */,
 				B06A04732C3325980049A680 /* GetSwipesView.swift in Sources */,
 				B07A376D2C28A1C500C6D287 /* TextInputView.swift in Sources */,
 				B07A37752C28A1F700C6D287 /* GeneratingRecipesView.swift in Sources */,
@@ -726,7 +734,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = blendr/blendr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"blendr/Preview Content\"";
 				DEVELOPMENT_TEAM = DJ45M3T43C;
@@ -748,11 +756,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewnielson.blendr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -771,7 +779,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = blendr/blendr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"blendr/Preview Content\"";
 				DEVELOPMENT_TEAM = DJ45M3T43C;
@@ -793,11 +801,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewnielson.blendr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -981,14 +989,6 @@
 				minimumVersion = 4.43.1;
 			};
 		};
-		B08237E32C3B1A42003E5A70 /* XCRemoteSwiftPackageReference "Instructions" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ephread/Instructions";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1036,11 +1036,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B07A377F2C28A46000C6D287 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCatUI;
-		};
-		B08237E42C3B1A42003E5A70 /* Instructions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B08237E32C3B1A42003E5A70 /* XCRemoteSwiftPackageReference "Instructions" */;
-			productName = Instructions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

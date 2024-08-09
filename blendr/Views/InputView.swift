@@ -31,6 +31,8 @@ struct InputView: View {
     @EnvironmentObject var interstitialAdsManager: InterstitialAdsManager
     @State private var hasAdShowed: Bool = false
     
+    @State private var adLoadTimeoutOccurred = false
+    
     // Speech recognition properties
     @State private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     @State private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -452,20 +454,22 @@ struct InputView: View {
                         }
                         
                         Button(action: {
-                            withAnimation {
-                                occasion = isFood ? "\(selectedMealType) \(occasion)" : occasion
-                                preferences = isFood ? preferences : (alcohol ? "alcoholic drink \(preferences)" : "non-alcoholic drink \(preferences)")
-                                Task {
-                                    await authViewModel.updateUserAttributes(isFood, occasion, preferences, ingredients, alcohol, selectedMealType)
-                                }
-                                viewModel.generateRecipes(ingredients: ingredients, occasion: occasion, preferences: preferences, isFood: isFood, user: authViewModel.currentUser!) { result in
-                                    switch result {
-                                    case .success(let recipes):
-                                        authViewModel.updateCurrCardStack(with: recipes)
-                                        isPresented = false
-                                        isCardStackPresented = true
-                                    case .failure(let error):
-                                        print("Error generating recipes: \(error.localizedDescription)")
+                            if interstitialAdsManager.interstitialAdLoaded || adLoadTimeoutOccurred {
+                                withAnimation {
+                                    occasion = isFood ? "\(selectedMealType) \(occasion)" : occasion
+                                    preferences = isFood ? preferences : (alcohol ? "alcoholic drink \(preferences)" : "non-alcoholic drink \(preferences)")
+                                    Task {
+                                        await authViewModel.updateUserAttributes(isFood, occasion, preferences, ingredients, alcohol, selectedMealType)
+                                    }
+                                    viewModel.generateRecipes(ingredients: ingredients, occasion: occasion, preferences: preferences, isFood: isFood, user: authViewModel.currentUser!) { result in
+                                        switch result {
+                                        case .success(let recipes):
+                                            authViewModel.updateCurrCardStack(with: recipes)
+                                            isPresented = false
+                                            isCardStackPresented = true
+                                        case .failure(let error):
+                                            print("Error generating recipes: \(error.localizedDescription)")
+                                        }
                                     }
                                 }
                             }
@@ -477,7 +481,7 @@ struct InputView: View {
                                     .foregroundColor(Color(hex: 0x002247))
                                     .cornerRadius(10)
                                 
-                                if authViewModel.currentUser!.subscription == 1 || interstitialAdsManager.interstitialAdLoaded {
+                                if interstitialAdsManager.interstitialAdLoaded || adLoadTimeoutOccurred {
                                     Text("Generate")
                                         .font(.headline)
                                         .foregroundColor(.white)
@@ -489,6 +493,11 @@ struct InputView: View {
                             }
                         }
                         .padding(.vertical)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                adLoadTimeoutOccurred = true // Set timeout flag after 5 seconds
+                            }
+                        }
                     }
                 }
                 .padding(.horizontal, 10)
