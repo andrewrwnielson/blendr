@@ -217,27 +217,31 @@ struct GetSwipesView: View {
                 .foregroundStyle(.gray)
             
             Button {
-                if rewardedAdsManager.rewardedAdLoaded {
-                    rewardedAdsManager.displayrewardedAd()
-                    Task {
-                        await viewModelAuth.updateUserSwipes(viewModelAuth.currentUser!.swipes + 10)
-                    }
-                }
+//                if rewardedAdsManager.rewardedAdLoaded {
+//                    rewardedAdsManager.displayrewardedAd()
+//                    Task {
+//                        await viewModelAuth.updateUserSwipes(viewModelAuth.currentUser!.swipes + 10)
+//                    }
+//                }
             } label: {
                 ZStack {
                     Rectangle()
                         .frame(height: UIScreen.main.bounds.height / 16)
-                        .foregroundColor(Color(hex: 0x002247))
+                        .foregroundColor(.gray)     // turn to 0x002247 once repaired
                         .cornerRadius(10)
                     
-                    if rewardedAdsManager.rewardedAdLoaded {
-                        Text("WATCH AN AD TO EARN 10 SWIPES")
-                            .foregroundColor(.white)
-                            .bold()
-                    } else {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    }
+                    Text("ADS CURRENTLY UNAVAILABLE")
+                        .foregroundColor(.white)
+                        .bold()
+                    
+//                    if rewardedAdsManager.rewardedAdLoaded {
+//                        Text("WATCH AN AD TO EARN 10 SWIPES")
+//                            .foregroundColor(.white)
+//                            .bold()
+//                    } else {
+//                        ProgressView()
+//                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+//                    }
                 }
             }
             .padding(.vertical)

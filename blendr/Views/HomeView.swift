@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var isGetSwipesPresented = false
     @State private var isFood = true
     
-    @StateObject var viewModel = CardsViewModel(service: CardService(apiToken: "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"), authViewModel: AuthViewModel())
+    @StateObject var viewModel = CardsViewModel(service: CardService(apiToken: Config.openAIKey), authViewModel: AuthViewModel())
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var interstitialAdsManager: InterstitialAdsManager
     
@@ -161,7 +161,7 @@ struct HomeView: View {
                 Task { await StoreTip.homeViewVisitedEvent.donate() }
             }
             .fullScreenCover(isPresented: $isCardStackPresented) {
-                CardStackView(service: CardService(apiToken: "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"), authViewModel: authViewModel)
+                CardStackView(service: CardService(apiToken: Config.openAIKey), authViewModel: authViewModel)
                     .environmentObject(authViewModel)
                     .onDisappear() {
                         Task { await CardStackTip.recipesGeneratedEvent.donate() }

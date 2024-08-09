@@ -226,7 +226,7 @@ struct RecipeDetailView: View {
         isLoading = true
         errorMessage = nil
         let prompt = createRecipeStepsPrompt(recipe: recipe, equipment: authViewModel.currentUser!.equipment)
-        CardService(apiToken: "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").generateRecipeSteps(prompt: prompt) { result in
+        CardService(apiToken: Config.openAIKey).generateRecipeSteps(prompt: prompt) { result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
